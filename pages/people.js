@@ -1,5 +1,10 @@
-import React from 'react';
+import PeopleList from '../components/PeopleList';
 
 export default function People() {
-  return <div>People Page</div>;
+  return (
+    <>
+      <h1 className="mt-5">People</h1>
+      <PeopleList />
+    </>
+  );
 }
