@@ -31,7 +31,6 @@ export default function Teams() {
           {teams.map((team) => <TeamList key={team.id} teamObj={team} admin={user.isAdmin} onUpdate={getTeams} />)}
         </tbody>
       </Table>
-      <TeamList />
     </>
   );
 }

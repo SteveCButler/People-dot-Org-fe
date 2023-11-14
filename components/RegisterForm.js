@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { registerUser } from '../utils/auth'; // Update with path to registerUser
@@ -15,8 +16,8 @@ const initialState = {
 };
 function RegisterForm({ user }) {
   const [formData, setFormData] = useState(initialState);
+  const router = useRouter();
 
-  console.warn('USER: ', user);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -29,7 +30,7 @@ function RegisterForm({ user }) {
     e.preventDefault();
     const payload = { ...formData, uid: user.uid };
     console.warn('Payload', payload);
-    registerUser(payload).then((data) => console.warn('USER: ', data));
+    registerUser(payload).then(router.push('/profile'));
   };
 
   return (
