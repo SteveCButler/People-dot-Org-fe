@@ -8,7 +8,6 @@ function ModalComponent({ regForm, formTitle }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.warn('title: ', formTitle);
 
   return (
     <>
