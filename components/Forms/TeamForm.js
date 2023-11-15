@@ -51,7 +51,7 @@ function TeamForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="secondary" type="submit">
         Submit
       </Button>
     </Form>

@@ -88,7 +88,7 @@ const PrivilegeForm = ({ teams, people }) => {
 
         </div>
       </Form>
-      <Button type="submit">Assign</Button>
+      <Button variant="secondary" type="submit">Assign</Button>
     </>
 
   );
