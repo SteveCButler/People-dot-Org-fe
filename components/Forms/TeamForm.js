@@ -22,7 +22,6 @@ function TeamForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formData };
-    console.warn('Payload: ', payload);
     createTeam(payload).then(() => {
       window.alert(`${payload.name} has been created`);
     });

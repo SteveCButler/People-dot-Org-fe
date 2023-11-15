@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { registerUser } from '../utils/auth'; // Update with path to registerUser
+import { registerUser } from '../utils/auth';
+import { updatePerson } from '../api/peopleData';
 
 const initialState = {
   firstName: '',
@@ -14,9 +15,18 @@ const initialState = {
   isTeamLead: false,
 
 };
-function RegisterForm({ user }) {
+function RegisterForm({ user, personObj }) {
   const [formData, setFormData] = useState(initialState);
   const router = useRouter();
+
+  console.warn('PersonObj: ', personObj);
+
+  useEffect(() => {
+    if (personObj.id) {
+      setFormData(personObj);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [personObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,9 +38,12 @@ function RegisterForm({ user }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = { ...formData, uid: user.uid };
-    console.warn('Payload', payload);
-    registerUser(payload).then(router.push('/profile'));
+    if (personObj.id) {
+      updatePerson(formData).then(router.push('/profile'));
+    } else {
+      const payload = { ...formData, uid: user.uid };
+      registerUser(payload).then(router.push('/plans'));
+    }
   };
 
   return (
@@ -89,7 +102,13 @@ RegisterForm.propTypes = {
   user: PropTypes.shape({
     uid: PropTypes.string.isRequired,
   }).isRequired,
+  personObj: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }),
 
 };
 
+RegisterForm.defaultProps = {
+  personObj: initialState,
+};
 export default RegisterForm;
