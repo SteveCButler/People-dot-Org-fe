@@ -11,9 +11,6 @@ function ModalComponent({ regForm, formTitle }) {
 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button> */}
 
       <Modal
         show={show}
@@ -27,12 +24,7 @@ function ModalComponent({ regForm, formTitle }) {
         <Modal.Body>
           {regForm}
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary">Understood</Button>
-        </Modal.Footer> */}
+
       </Modal>
     </>
   );
