@@ -45,7 +45,7 @@ function RegisterForm({ user, personObj }) {
   };
 
   return (
-    <Form className="mt-5" onSubmit={handleSubmit}>
+    <Form className="mt-2 bg-secondary p-3 text-white" onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formFirstName">
         <Form.Label>First Name</Form.Label>
         <Form.Control
@@ -79,7 +79,7 @@ function RegisterForm({ user, personObj }) {
           We will never share your email with anyone else.
         </Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formPhone">
+      <Form.Group className="mb-5" controlId="formPhone">
         <Form.Label>Phone Number</Form.Label>
         <Form.Control
           type="text"
@@ -89,7 +89,7 @@ function RegisterForm({ user, personObj }) {
           onChange={handleChange}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="dark" type="submit">
         Submit
       </Button>
     </Form>

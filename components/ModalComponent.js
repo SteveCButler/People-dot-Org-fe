@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function ModalComponent({ categoryForm, formTitle }) {
-  const [show, setShow] = useState(false);
+function ModalComponent({ regForm, formTitle }) {
+  const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  console.warn('title: ', formTitle);
 
   return (
     <>
@@ -25,7 +26,7 @@ function ModalComponent({ categoryForm, formTitle }) {
           <Modal.Title>{formTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {categoryForm}
+          {regForm}
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -41,6 +42,6 @@ function ModalComponent({ categoryForm, formTitle }) {
 export default ModalComponent;
 
 ModalComponent.propTypes = {
-  categoryForm: PropTypes.element.isRequired,
+  regForm: PropTypes.element.isRequired,
   formTitle: PropTypes.string.isRequired,
 };

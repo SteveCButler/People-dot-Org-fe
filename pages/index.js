@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { checkUser } from '../utils/auth';
 import RegisterForm from '../components/RegisterForm';
-
+import ModalComponent from '../components/ModalComponent';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -62,7 +62,7 @@ function Home() {
             Sign Out
           </Button> */}
         </div>
-      ) : (<RegisterForm user={user} onUpdate={onUpdate} />)}
+      ) : (<ModalComponent regForm={<RegisterForm user={user} onUpdate={onUpdate} />} formTitle="Registration" />)}
     </>
 
   );
