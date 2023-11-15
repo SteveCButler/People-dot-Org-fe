@@ -13,6 +13,7 @@ export default function Profile() {
   const [authUser, setAuthUser] = useState({});
   const fullName = `${authUser?.firstName} ${authUser?.lastName}`;
 
+  console.warn('User: ', user);
   useEffect(() => {
     getPersonById(user.id).then((data) => setAuthUser(data));
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,25 +1,25 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function ModalComponent({ regForm, formTitle }) {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  //  const handleShow = () => setShow(true);
   console.warn('title: ', formTitle);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      {/* <Button variant="primary" onClick={handleShow}>
         Launch static backdrop modal
-      </Button>
+      </Button> */}
 
       <Modal
         show={show}
         onHide={handleClose}
-        // backdrop="static"
+        backdrop="static"
         keyboard={false}
       >
         <Modal.Header closeButton>

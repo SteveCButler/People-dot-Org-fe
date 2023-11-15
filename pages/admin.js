@@ -1,18 +1,17 @@
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import TeamForm from '../components/Forms/TeamForm';
-// import PrivilegeForm from '../components/Forms/PrivilegeForm';
-// import { getAllPeople } from '../api/peopleData';
-// import { getAllTeams } from '../api/teamData';
-import AssignPrivilegeForm from '../components/Forms/AssignPrivilegeForm';
+import PrivilegeForm from '../components/Forms/PrivilegeForm';
+import { getAllPeople } from '../api/peopleData';
+import { getAllTeams } from '../api/teamData';
 
 export default function People() {
-  // const [people, setPeople] = useState([]);
-  // const [teams, setTeams] = useState([]);
+  const [people, setPeople] = useState([]);
+  const [teams, setTeams] = useState([]);
 
-  // useEffect(() => {
-  //   getAllPeople().then(setPeople);
-  //   getAllTeams().then(setTeams);
-  // }, []);
+  useEffect(() => {
+    getAllPeople().then(setPeople);
+    getAllTeams().then(setTeams);
+  }, []);
 
   return (
     <>
@@ -22,8 +21,7 @@ export default function People() {
       </div>
       <div className="mt-5">
         <h1>Assign Privileges</h1>
-        {/* <PrivilegeForm teams={teams} people={people} /> */}
-        <AssignPrivilegeForm />
+        <PrivilegeForm teams={teams} people={people} />
       </div>
     </>
 
