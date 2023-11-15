@@ -19,8 +19,6 @@ function RegisterForm({ user, personObj }) {
   const [formData, setFormData] = useState(initialState);
   const router = useRouter();
 
-  console.warn('PersonObj: ', personObj);
-
   useEffect(() => {
     if (personObj.id) {
       setFormData(personObj);

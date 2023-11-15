@@ -17,10 +17,10 @@ function Signin() {
         paddingBlock: '0 5rem',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
+      <h1>People.ORG</h1>
+
+      <Button type="button" size="lg" className="bg-secondary border-0 w-25 mx-auto mt-5" onClick={signIn}>
+        Sign In / Register
       </Button>
     </div>
   );
