@@ -4,7 +4,7 @@ import PrivilegeForm from '../components/Forms/PrivilegeForm';
 import { getAllPeople } from '../api/peopleData';
 import { getAllTeams } from '../api/teamData';
 
-export default function People() {
+export default function Admin() {
   const [people, setPeople] = useState([]);
   const [teams, setTeams] = useState([]);
 

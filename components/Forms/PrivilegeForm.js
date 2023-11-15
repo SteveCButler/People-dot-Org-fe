@@ -94,8 +94,6 @@ const PrivilegeForm = ({ teams, people }) => {
   );
 };
 
-export default PrivilegeForm;
-
 PrivilegeForm.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
@@ -111,3 +109,4 @@ PrivilegeForm.propTypes = {
   })).isRequired,
 
 };
+export default PrivilegeForm;
