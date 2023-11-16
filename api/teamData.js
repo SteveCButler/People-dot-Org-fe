@@ -12,6 +12,30 @@ const getAllTeams = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getTeamById = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/team/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const getTeamByTeamLeadId = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/team/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 // Create New Team
 const createTeam = (payload) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/api/team/`, {
@@ -26,6 +50,20 @@ const createTeam = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// Create New Team
+const addTeamLead = (payload) => new Promise((resolve, reject) => {
+  console.warn('Fetch-Payload: ', payload);
+  fetch(`${dbUrl}/api/team/${payload.teamId}/${payload.personId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const deleteTeam = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/api/team/${id}`, {
     method: 'DELETE',
@@ -36,6 +74,9 @@ const deleteTeam = (id) => new Promise((resolve, reject) => {
 
 export {
   getAllTeams,
+  getTeamById,
   createTeam,
   deleteTeam,
+  addTeamLead,
+  getTeamByTeamLeadId,
 };

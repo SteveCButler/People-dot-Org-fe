@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { createPlan, updatePlan } from '../../api/planData';
-import 'react-datepicker/dist/react-datepicker.css';
 
 const initialState = {
   name: '',
@@ -43,8 +42,8 @@ function PlanForm({ planObj }) {
   };
 
   return (
-    <Form className="mt-2 bg-secondary p-3 text-white" onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formName">
+    <Form className="mt-2  bg-secondary p-3 text-white" onSubmit={handleSubmit}>
+      <Form.Group className="mb-3 text-start" controlId="formName">
         <Form.Label> Name</Form.Label>
         <Form.Control
           type="text"
@@ -54,10 +53,11 @@ function PlanForm({ planObj }) {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formDetails">
+      <Form.Group className="mb-3 text-start" controlId="formDetails">
         <Form.Label>Details</Form.Label>
         <Form.Control
-          type="text"
+          as="textarea"
+          rows={3}
           placeholder="plan details"
           name="details"
           value={formData.lastName}
@@ -65,7 +65,7 @@ function PlanForm({ planObj }) {
         />
       </Form.Group>
 
-      <Form.Group className="mb-5" controlId="formDate">
+      <Form.Group className="mb-5 text-start" controlId="formDate">
         <Form.Label className="me-3">Plan Date</Form.Label>
         <Form.Control
           type="date"
