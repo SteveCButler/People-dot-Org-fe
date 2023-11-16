@@ -18,6 +18,7 @@ export default function TeamLead() {
 
   useEffect(() => {
     getPlans();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
