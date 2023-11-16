@@ -13,7 +13,7 @@ const getAllTeams = () => new Promise((resolve, reject) => {
 });
 
 const getTeamById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/api/team/${id}`, {
+  fetch(`${dbUrl}/api/singleTeam/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -50,11 +50,11 @@ const createTeam = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// Create New Team
-const addTeamLead = (payload) => new Promise((resolve, reject) => {
+// Add New Team Lead
+const addTeamLead = (payload, teamId, personId) => new Promise((resolve, reject) => {
   console.warn('Fetch-Payload: ', payload);
-  fetch(`${dbUrl}/api/team/${payload.teamId}/${payload.personId}`, {
-    method: 'POST',
+  fetch(`${dbUrl}/api/team/${teamId}/${personId}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },

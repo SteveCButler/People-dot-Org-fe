@@ -6,19 +6,8 @@ import Button from 'react-bootstrap/Button';
 import { addTeamLead, getTeamById } from '../../api/teamData';
 
 const PrivilegeForm = ({ teams, people }) => {
-  // const [isAdmin, setIsAdmin] = useState(false);
-  // const [isTeamLead, setIsTeamLead] = useState(false);
   const [formData, setFormData] = useState({});
-  // const [personData, setPersonData] = useState({});
   const [teamData, setTeamData] = useState({});
-
-  // const handleAdminCheckboxChange = (event) => {
-  //   setIsAdmin(event.target.checked);
-  // };
-
-  // const handleTeamLeadCheckboxChange = (event) => {
-  //   setIsTeamLead(event.target.checked);
-  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,17 +21,11 @@ const PrivilegeForm = ({ teams, people }) => {
     event.preventDefault();
     // getPersonById(formData.personId).then(setPersonData);
     getTeamById(formData.teamId).then(setTeamData);
-    const payload = { ...formData, teamData };
+    const payload = { teamData, isTeamLead: true };
     console.warn('PAYLOAD: ', payload);
-    addTeamLead(payload).then(() => {
-      window.alert(`${payload.personId} has been added as team lead `);
+    addTeamLead(payload, formData.teamId, formData.personId).then(() => {
+      window.alert('Team lead has been assigned');
     });
-    // Perform any further actions with isAdmin and isTeamLead here
-    // console.warn('isAdmin:', isAdmin);
-    // console.warn('isTeamLead:', isTeamLead);
-
-    // For demonstration purposes, you might want to send this data to a server
-    // For now, let's just log the values
   };
 
   return (
@@ -72,27 +55,7 @@ const PrivilegeForm = ({ teams, people }) => {
           {teams.map((team) => <option key={team.id} value={team.id}>{team.name}</option>)}
 
         </Form.Select>
-        <div className="d-flex flex-column gap-2 ">
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check
-              type="checkbox"
-              label="Team Lead"
-              id="isTeamLeadCheckbox"
-              checked={formData.isTeamLead}
-              // onChange={handleTeamLeadCheckboxChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check
-              label="Admin"
-              type="checkbox"
-              id="isAdminCheckbox"
-              checked={formData.isAdmin}
-              // onChange={handleAdminCheckboxChange}
-            />
-          </Form.Group>
 
-        </div>
         <Button variant="secondary" type="submit">Assign</Button>
       </Form>
     </>
