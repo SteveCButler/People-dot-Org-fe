@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Image from 'next/image';
 import { signIn } from '../utils/auth';
+import logo from '../public/People_org_small.png';
 
 function Signin() {
   return (
@@ -17,9 +19,15 @@ function Signin() {
         paddingBlock: '0 5rem',
       }}
     >
-      <h1>People.ORG</h1>
+      {/* <h1>People.ORG</h1> */}
+      <div className="w-50 mx-auto">
+        <Image
+          src={logo}
+          alt="Logo"
+        />
+      </div>
 
-      <Button type="button" size="lg" className="bg-secondary border-0 w-25 mx-auto mt-5" onClick={signIn}>
+      <Button type="button" size="lg" className="bg-secondary border-0 w-25 mx-auto mt-3" onClick={signIn}>
         Sign In / Register
       </Button>
     </div>

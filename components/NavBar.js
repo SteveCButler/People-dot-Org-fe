@@ -1,16 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
+import logo from '../public/People_org_small.png';
 
 export default function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="px-5 sticky-top shadow">
       {/* <Container> */}
-      <Link passHref href="/">
-        <Navbar.Brand className="fs-2 w-25 ms-5">People.ORG</Navbar.Brand>
-      </Link>
+      <div className="d-flex gap-3">
+        <Image src={logo} width={50} height={50} />
+        <Link passHref href="/">
+          <Navbar.Brand className="fs-2 w-25 ">People.ORG</Navbar.Brand>
+        </Link>
+      </div>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ms-auto w-50 d-flex justify-content-around">
