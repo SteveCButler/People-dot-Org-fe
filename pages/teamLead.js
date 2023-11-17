@@ -40,7 +40,7 @@ export default function TeamLead() {
               </tr>
             </thead>
             <tbody>
-              {plans.map((plan) => <PlanList key={plan.id} planObj={plan} onUpdate={getAllPlans} />)}
+              {plans.map((plan) => <PlanList key={plan.id} planObj={plan} onUpdate={getPlans} />)}
             </tbody>
           </Table>
         </div>

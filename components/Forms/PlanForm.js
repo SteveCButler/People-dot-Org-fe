@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { createPlan, updatePlan } from '../../api/planData';
+import { createPlan } from '../../api/planData';
 
 const initialState = {
   name: '',
@@ -11,16 +9,8 @@ const initialState = {
   date: '',
 
 };
-function PlanForm({ planObj }) {
+function PlanForm() {
   const [formData, setFormData] = useState(initialState);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (planObj?.id) {
-      setFormData(planObj);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [planObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,13 +22,9 @@ function PlanForm({ planObj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (planObj.id) {
-      updatePlan(formData).then(router.push('/profile'));
-    } else {
-      const payload = { ...formData };
-      console.warn('Payload: ', payload);
-      createPlan(payload).then(router.push('/plans'));
-    }
+    const payload = { ...formData };
+    createPlan(payload);
+    setFormData(initialState);
   };
 
   return (
@@ -82,17 +68,4 @@ function PlanForm({ planObj }) {
   );
 }
 
-PlanForm.propTypes = {
-  user: PropTypes.shape({
-    uid: PropTypes.string.isRequired,
-  }).isRequired,
-  planObj: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-  }),
-
-};
-
-PlanForm.defaultProps = {
-  planObj: initialState,
-};
 export default PlanForm;
