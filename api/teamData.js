@@ -13,7 +13,7 @@ const getAllTeams = () => new Promise((resolve, reject) => {
 });
 
 const getTeamById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/api/team/${id}`, {
+  fetch(`${dbUrl}/api/singleTeam/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -50,11 +50,10 @@ const createTeam = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// Create New Team
-const addTeamLead = (payload) => new Promise((resolve, reject) => {
-  console.warn('Fetch-Payload: ', payload);
-  fetch(`${dbUrl}/api/team/${payload.teamId}/${payload.personId}`, {
-    method: 'POST',
+// Add New Team Lead
+const addTeamLead = (payload, teamId, personId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/team/${teamId}/${personId}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -72,6 +71,29 @@ const deleteTeam = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// Add Person to Team   /api/team/{personId}
+const addPersonToTeam = (payload) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/add-to-team/${payload.teamId}/${payload.personId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+// Remove Person from Team
+const removePersonFromTeam = (teamId, personId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/remove-from-team/${teamId}/${personId}`, {
+    method: 'DELETE',
+  })
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getAllTeams,
   getTeamById,
@@ -79,4 +101,6 @@ export {
   deleteTeam,
   addTeamLead,
   getTeamByTeamLeadId,
+  addPersonToTeam,
+  removePersonFromTeam,
 };

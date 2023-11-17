@@ -5,6 +5,7 @@ import { getAllPlans } from '../api/planData';
 import PlanList from '../components/PlansList';
 import { useAuth } from '../utils/context/authContext';
 import { getTeamByTeamLeadId } from '../api/teamData';
+import TeamMember from './teamMember';
 
 export default function TeamLead() {
   const [plans, setPlans] = useState([]);
@@ -40,11 +41,21 @@ export default function TeamLead() {
               </tr>
             </thead>
             <tbody>
-              {plans.map((plan) => <PlanList key={plan.id} planObj={plan} onUpdate={getAllPlans} />)}
+              {plans.map((plan) => <PlanList key={plan.id} planObj={plan} onUpdate={getPlans} />)}
             </tbody>
           </Table>
         </div>
       </div>
+      <div className="d-flex gap-5 ">
+        <div className="w-50">
+          <p className="fs-2 mb-0 mt-4">Add Team Member</p>
+          <TeamMember />
+        </div>
+        <div className="w-75">
+          <p className="fs-2 mb-0 mt-4">Team Members</p>
+        </div>
+      </div>
+
     </>
   );
 }

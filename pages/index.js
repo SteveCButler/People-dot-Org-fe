@@ -15,14 +15,14 @@ function Home() {
   const { user } = useAuth();
   const [authUser, setAuthUser] = useState({});
 
-  useEffect(() => {
-    checkUser(user.uid).then((data) => setAuthUser(data));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const onUpdate = () => {
+  const validateAuth = () => {
     checkUser(user.uid).then((data) => setAuthUser(data));
   };
+
+  useEffect(() => {
+    validateAuth();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -35,7 +35,7 @@ function Home() {
           {authUser.isAdmin ? (<Admin />) : (authUser.isTeamLead ? (<TeamLead />) : <Volunteer />) }
 
         </div>
-      ) : (<ModalComponent regForm={<RegisterForm user={user} onUpdate={onUpdate} />} formTitle="Registration" />)}
+      ) : (<ModalComponent regForm={<RegisterForm user={user} onUpdate={validateAuth} />} formTitle="Registration" />)}
     </>
 
   );

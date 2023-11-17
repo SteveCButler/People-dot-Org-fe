@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import { getPersonById } from '../../api/peopleData';
-import { addTeamLead, getTeamById } from '../../api/teamData';
+import { addPersonToTeam } from '../../api/teamData';
 
-const PrivilegeForm = ({ teams, people }) => {
+const AddTeamMember = ({ teams, people }) => {
   const [formData, setFormData] = useState({});
-  const [teamData, setTeamData] = useState({});
+  // const [teamData, setTeamData] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,16 +20,16 @@ const PrivilegeForm = ({ teams, people }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // getPersonById(formData.personId).then(setPersonData);
-    getTeamById(formData.teamId).then(setTeamData);
-    const payload = { teamData, isTeamLead: true };
-    addTeamLead(payload, formData.teamId, formData.personId).then(() => {
-      window.alert('Team lead has been assigned');
+    // getTeamById(formData.teamId).then(setTeamData);
+    const payload = { ...formData };
+    addPersonToTeam(payload).then(() => {
+      window.alert('Person has been assigned');
     });
   };
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form className="mt-2  bg-secondary p-3 text-white" onSubmit={handleSubmit}>
         <Form.Select
           aria-label="People List"
           className="my-4"
@@ -55,14 +55,14 @@ const PrivilegeForm = ({ teams, people }) => {
 
         </Form.Select>
 
-        <Button variant="secondary" type="submit">Assign</Button>
+        <Button variant="dark" type="submit">Assign</Button>
       </Form>
     </>
 
   );
 };
 
-PrivilegeForm.propTypes = {
+AddTeamMember.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -75,6 +75,5 @@ PrivilegeForm.propTypes = {
     email: PropTypes.string,
     phone: PropTypes.string,
   })).isRequired,
-
 };
-export default PrivilegeForm;
+export default AddTeamMember;
