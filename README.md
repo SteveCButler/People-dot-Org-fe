@@ -17,3 +17,10 @@ ___
 8. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 
+## ERD
+https://dbdiagram.io/d/People-Org-65498fdc7d8bbd64659ec09f![image](https://github.com/SteveCButler/People-dot-Org-fe/assets/121408336/03526f5d-2766-4bb4-ad5b-cdb870b42279)
+
+
+## Wireframe
+https://www.figma.com/file/jKKcTQhOPZZO2hBC7sYPEL/People.Org?type=design&node-id=0-1&mode=design&t=422Gru8NYmGoajAl-0![image](https://github.com/SteveCButler/People-dot-Org-fe/assets/121408336/4fadc658-174b-4f8c-9a9a-94172082f0fd)
+
