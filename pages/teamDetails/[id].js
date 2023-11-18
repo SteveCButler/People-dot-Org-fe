@@ -32,7 +32,6 @@ export default function TeamDetail() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   return (
     <>
       <p className="fs-2 mb-0 mt-4">{team.name} Members</p>

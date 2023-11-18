@@ -20,3 +20,7 @@ a {
 body {
   background-color: #d3dadb;
 }
+ul {
+  list-style: none;
+  padding-left: 0;
+}
