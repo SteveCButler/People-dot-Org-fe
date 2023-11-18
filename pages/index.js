@@ -30,7 +30,7 @@ function Home() {
         <title>Home</title>
       </Head>
 
-      { authUser?.uid === user.uid ? (
+      { authUser.uid === user.uid ? (
         <div className="text-center d-flex flex-column justify-content-center align-content-center">
           {authUser.isAdmin ? (<Admin />) : (authUser.isTeamLead ? (<TeamLead />) : <Volunteer />) }
 
