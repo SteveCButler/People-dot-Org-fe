@@ -94,6 +94,19 @@ const removePersonFromTeam = (teamId, personId) => new Promise((resolve, reject)
     .catch(reject);
 });
 
+// Add Team to Plan
+const addTeamToPlan = (payload, teamId, planId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/add-plan-to-team/${teamId}/${planId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getAllTeams,
   getTeamById,
@@ -103,4 +116,5 @@ export {
   getTeamByTeamLeadId,
   addPersonToTeam,
   removePersonFromTeam,
+  addTeamToPlan,
 };

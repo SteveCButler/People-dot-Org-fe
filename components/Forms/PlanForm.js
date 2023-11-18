@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { createPlan } from '../../api/planData';
@@ -11,6 +12,7 @@ const initialState = {
 };
 function PlanForm() {
   const [formData, setFormData] = useState(initialState);
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,8 +25,8 @@ function PlanForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formData };
-    createPlan(payload);
-    setFormData(initialState);
+    createPlan(payload)
+      .then((data) => router.push(`/plan/${data.id}`));
   };
 
   return (
