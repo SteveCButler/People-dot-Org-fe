@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useAuth } from '../../utils/context/authContext';
 import { getPlanById } from '../../api/planData';
+import AddTeamToPlanForm from '../../components/Forms/AddTeamToPlanForm';
+import { getTeamByPlanId } from '../../api/teamData';
 
 export default function PlanDetails() {
   const [plan, setPlan] = useState({});
@@ -11,6 +13,7 @@ export default function PlanDetails() {
   const router = useRouter();
   const { id } = router.query;
   const [show, setShow] = useState(false);
+  const [teams, setTeams] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -39,6 +42,7 @@ export default function PlanDetails() {
   const myDate = formatDate(plan?.date);
   useEffect(() => {
     getPlanById(id).then(setPlan);
+    getTeamByPlanId(id).then(setTeams);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,17 +53,13 @@ export default function PlanDetails() {
         <p className="fs-3 align-self-end justify-content-end"> {myDate}</p>
       </div>
 
-      <div className="fs-4 ms-3 mt-5">
-        <p className="fw-semibold">Details:</p>
-        <p className="ms-3"> {plan.details}</p>
+      <div className="mt-5">
+        <p className="fs-3 fw-semibold">Details</p>
+        <p className="ms-3 fs-4"> {plan.details}</p>
 
       </div>
       {user.isTeamLead && (
         <>
-          <Button variant="secondary" onClick={handleShow}>
-            Add Team
-          </Button>
-
           <Modal
             show={show}
             onHide={handleClose}
@@ -70,16 +70,24 @@ export default function PlanDetails() {
               <Modal.Title>Add Team to Plan</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              I will not close if you click outside me. Don not even try to press
-              escape key.
+              <AddTeamToPlanForm />
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Cancel
+              <Button variant="dark" className="btn-sm" onClick={handleClose}>
+                Close
               </Button>
-              <Button variant="dark">Submit</Button>
             </Modal.Footer>
           </Modal>
+
+          <div className="mt-5 fs-5">
+            <p className="fs-3 fw-semibold">Teams</p>
+            <ul className="mb-5">
+              {teams.map((team) => <li key={team.id}>{team.name}</li>)}
+            </ul>
+          </div>
+          <Button variant="secondary" className="mt-5" onClick={handleShow}>
+            Add Team
+          </Button>
         </>
       )}
     </>

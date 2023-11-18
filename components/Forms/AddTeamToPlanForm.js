@@ -1,17 +1,21 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
 // import { getPersonById } from '../../api/peopleData';
-import { addTeamToPlan, getTeamById } from '../../api/teamData';
+import { addTeamToPlan, getAllTeams, getTeamById } from '../../api/teamData';
 
-const PrivilegeForm = ({ teams }) => {
+const AddTeamToPlanForm = () => {
   const [formData, setFormData] = useState({});
   const [teamData, setTeamData] = useState({});
+  const [teams, setTeams] = useState([]);
   const router = useRouter();
 
   const planId = router.query.id;
+
+  useEffect(() => {
+    getAllTeams().then(setTeams);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,30 +29,19 @@ const PrivilegeForm = ({ teams }) => {
     event.preventDefault();
     // getPersonById(formData.personId).then(setPersonData);
     getTeamById(formData.teamId).then(setTeamData);
-    const payload = { teamData, isTeamLead: true };
+    const payload = { teamData };
+    console.warn('Payload: ', payload);
     addTeamToPlan(payload, formData.teamId, planId).then(() => {
-      window.alert('Team lead has been assigned');
+      window.alert(`${teamData.name} been added`);
     });
   };
 
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        {/* <Form.Select
-          aria-label="People List"
-          className="my-4"
-          name="personId"
-          onChange={handleChange}
-          value={formData.id}
-          required
-        >
-          <option>Select a Person</option>
-          {people.map((person) => <option key={person.id} value={person.id}>{person.firstName} {person.lastName}</option>)}
-        </Form.Select> */}
-
         <Form.Select
           aria-label="Team List"
-          className="mb-3"
+          className="my-5"
           name="teamId"
           onChange={handleChange}
           value={formData.id}
@@ -59,26 +52,11 @@ const PrivilegeForm = ({ teams }) => {
 
         </Form.Select>
 
-        <Button variant="secondary" type="submit">Assign</Button>
+        <Button variant="secondary" type="submit">Add Team</Button>
       </Form>
     </>
 
   );
 };
 
-PrivilegeForm.propTypes = {
-  teams: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    description: PropTypes.string,
-  })).isRequired,
-  // people: PropTypes.arrayOf(PropTypes.shape({
-  //   id: PropTypes.number,
-  //   firstName: PropTypes.string,
-  //   lastName: PropTypes.string,
-  //   email: PropTypes.string,
-  //   phone: PropTypes.string,
-  // })).isRequired,
-
-};
-export default PrivilegeForm;
+export default AddTeamToPlanForm;
