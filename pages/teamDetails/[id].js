@@ -29,7 +29,8 @@ export default function TeamDetail() {
 
   useEffect(() => {
     getTeam();
-  }, [id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
