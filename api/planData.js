@@ -15,7 +15,7 @@ const getAllPlans = () => new Promise((resolve, reject) => {
 
 // GET Single Plan by Id
 const getPlanById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/api/Plan/${id}`, {
+  fetch(`${dbUrl}/api/singlePlan/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

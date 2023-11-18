@@ -46,14 +46,10 @@ export default function TeamLead() {
           </Table>
         </div>
       </div>
-      <div className="d-flex gap-5 ">
-        <div className="w-50">
-          <p className="fs-2 mb-0 mt-4">Add Team Member</p>
-          <TeamMember />
-        </div>
-        <div className="w-75">
-          <p className="fs-2 mb-0 mt-4">Team Members</p>
-        </div>
+
+      <p className="fs-2 mb-0 mt-4">Add Team Member</p>
+      <div className="w-75 mx-auto">
+        <TeamMember />
       </div>
 
     </>

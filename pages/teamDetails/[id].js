@@ -30,7 +30,8 @@ export default function TeamDetail() {
   useEffect(() => {
     getTeam();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, []);
+
 
   return (
     <>

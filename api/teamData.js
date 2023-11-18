@@ -94,6 +94,32 @@ const removePersonFromTeam = (teamId, personId) => new Promise((resolve, reject)
     .catch(reject);
 });
 
+// Add Team to Plan
+const addTeamToPlan = (payload, teamId, planId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/add-plan-to-team/${teamId}/${planId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+// Get Team list by plan id
+const getTeamByPlanId = (planId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/api/teams-by-planId/${planId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getAllTeams,
   getTeamById,
@@ -103,4 +129,6 @@ export {
   getTeamByTeamLeadId,
   addPersonToTeam,
   removePersonFromTeam,
+  addTeamToPlan,
+  getTeamByPlanId,
 };
