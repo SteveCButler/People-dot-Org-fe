@@ -18,7 +18,7 @@ const TeamList = ({ teamObj, admin, onUpdate }) => {
   return (
 
     <tr>
-      <td>{teamObj?.name}</td>
+      <td className="fw-semibold"><Link href={`/teamDetails/${teamObj.id}`} passHref>{teamObj?.name}</Link></td>
       <td>{teamObj?.description}</td>
       <td>{admin ? (<Button className="btn-sm btn-secondary ms-5" onClick={deleteATeam}><FontAwesomeIcon icon={faTrash} /></Button>) : user.isTeamLead && (
         <Link href={`/teamDetails/${teamObj.id}`} passHref>
