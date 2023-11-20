@@ -17,6 +17,7 @@ const RequestToServeForm = () => {
   useEffect(() => {
     getAllPeople().then(setPeople);
     getTeamById(teamId).then(setTeam);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e) => {
