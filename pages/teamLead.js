@@ -5,7 +5,7 @@ import { getAllPlans } from '../api/planData';
 import PlanList from '../components/PlansList';
 import { useAuth } from '../utils/context/authContext';
 import { getTeamByTeamLeadId } from '../api/teamData';
-import TeamMember from './teamMember';
+// import TeamMember from './teamMember';
 
 export default function TeamLead() {
   const [plans, setPlans] = useState([]);
@@ -25,6 +25,7 @@ export default function TeamLead() {
   return (
     <>
       <h1 className="mt-3">{team.name}</h1>
+
       <div className="d-flex gap-3">
         <div className="w-50">
           <p className="fs-2 mb-0 mt-4">Create Plan</p>
@@ -47,10 +48,10 @@ export default function TeamLead() {
         </div>
       </div>
 
-      <p className="fs-2 mb-0 mt-4">Add Team Member</p>
+      {/* <p className="fs-2 mb-0 mt-4">Add Team Member</p>
       <div className="w-75 mx-auto">
         <TeamMember />
-      </div>
+      </div> */}
 
     </>
   );
