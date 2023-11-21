@@ -22,7 +22,7 @@ export default function Teams() {
       <h1 className="mt-5 mb-3">Teams</h1>
       <Table>
         <thead>
-          <tr>
+          <tr className="fs-4 table-dark">
             <th>Team Name</th>
             <th colSpan={2}>Description</th>
           </tr>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { getTeamById, removePersonFromTeam } from '../../api/teamData';
 import { useAuth } from '../../utils/context/authContext';
+import RequestToServeForm from '../../components/Forms/RequestToServeForm';
 
 export default function TeamDetail() {
   const [people, setPeople] = useState([]);
@@ -13,6 +15,10 @@ export default function TeamDetail() {
   const router = useRouter();
   const { id } = router.query;
   const { user } = useAuth();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getTeam = () => {
     getTeamById(id).then((data) => {
@@ -34,11 +40,11 @@ export default function TeamDetail() {
 
   return (
     <>
-      <p className="fs-2 mb-0 mt-4">{team.name} Members</p>
+      <p className="fs-1 fw-bold  mt-4">{team.name} Members</p>
       <Table className="mt-4 w-50">
-        <thead>
+        <thead className="">
           <tr>
-            <th colSpan={2}>Name</th>
+            <th className="fs-4 table-dark" colSpan={2}>Member Name</th>
           </tr>
         </thead>
         <tbody>
@@ -50,6 +56,32 @@ export default function TeamDetail() {
           ))}
         </tbody>
       </Table>
+      {user.isTeamLead && (
+        <>
+          <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Request To Serve</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <RequestToServeForm />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="dark" className="btn-sm" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+          <Button variant="dark" className="mt-5" onClick={handleShow}>
+            Request to Serve
+          </Button>
+        </>
+      )}
 
     </>
   );

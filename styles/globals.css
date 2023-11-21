@@ -24,3 +24,8 @@ ul {
   list-style: none;
   padding-left: 0;
 }
+
+.cursor {
+
+cursor: pointer;
+}

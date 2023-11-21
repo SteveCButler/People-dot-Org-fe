@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
+import Link from 'next/link';
 import Modal from 'react-bootstrap/Modal';
 import { useAuth } from '../../utils/context/authContext';
 import { getPlanById } from '../../api/planData';
@@ -49,12 +50,12 @@ export default function PlanDetails() {
   return (
     <>
       <div className="d-flex gap-5 mt-5">
-        <p className="fs-1 me-5">{plan.name}</p>
-        <p className="fs-3 align-self-end justify-content-end"> {myDate}</p>
+        <p className="fs-1 me-5 fw-bold">{plan.name}</p>
+        <p className="fs-2 align-self-end justify-content-end"> {myDate}</p>
       </div>
 
       <div className="mt-5">
-        <p className="fs-3 fw-semibold">Details</p>
+        <p className="fs-3 fw-bold">Details</p>
         <p className="ms-3 fs-4"> {plan.details}</p>
 
       </div>
@@ -80,12 +81,12 @@ export default function PlanDetails() {
           </Modal>
 
           <div className="mt-5 fs-5">
-            <p className="fs-3 fw-semibold">Teams</p>
+            <p className="fs-3 fw-bold">Teams</p>
             <ul className="mb-5">
-              {teams.map((team) => <li key={team.id}>{team.name}</li>)}
+              {teams.map((team) => <Link key={team.id} href={`/teamDetails/${team.id}`} passHref><li className="cursor w-25 fs-4" key={team.id}>{team.name}</li></Link>)}
             </ul>
           </div>
-          <Button variant="secondary" className="mt-5" onClick={handleShow}>
+          <Button variant="dark" className="mt-5" onClick={handleShow}>
             Add Team
           </Button>
         </>

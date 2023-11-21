@@ -22,7 +22,7 @@ export default function People() {
       <h1 className="mt-5 mb-3">People</h1>
       <Table>
         <thead>
-          <tr>
+          <tr className="fs-4 table-dark">
             <th>Name</th>
             <th>Email Address</th>
             <th colSpan={2}>Phone Number</th>
